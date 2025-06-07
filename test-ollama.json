@@ -1,0 +1,6 @@
+{
+  "model": "gemma3:27b",
+  "messages": [
+    { "role": "user", "content": "Write me an essay on global warming in about 500 words." }
+  ]
+}
