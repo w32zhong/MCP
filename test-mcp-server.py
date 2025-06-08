@@ -25,7 +25,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--transport", default="stdio",
                         choices=["stdio", "sse", "streamable-http"])
-    parser.add_argument("--port", type=int, default=8080)
+    parser.add_argument("--port", type=int, default=8989)
     parser.add_argument("--host", default="0.0.0.0")
     args = parser.parse_args()
 
