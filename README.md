@@ -1,3 +1,4 @@
+## Example
 Set up MCP server:
 ```sh
 pip install python-sdk/ --break-system-packages
@@ -9,3 +10,6 @@ Call MCP server:
 ```
 ./test-mcp.sh
 ```
+
+## Reference
+[1] https://huggingface.co/learn/mcp-course/unit0/introduction
