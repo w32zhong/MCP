@@ -20,3 +20,4 @@ Call MCP server:
 ## Reference
 1. https://huggingface.co/learn/mcp-course/unit0/introduction
 2. https://openrouter.ai/docs/features/tool-calling
+3. https://qwen.readthedocs.io/en/latest/framework/function_call.html#hugging-face-transformers
