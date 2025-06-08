@@ -18,4 +18,5 @@ Call MCP server:
 ```
 
 ## Reference
-[1] https://huggingface.co/learn/mcp-course/unit0/introduction
+1. https://huggingface.co/learn/mcp-course/unit0/introduction
+2. https://openrouter.ai/docs/features/tool-calling
