@@ -12,9 +12,19 @@ Set up MCP server:
 python test-mcp-server.py --transport streamable-http
 ```
 
-Call MCP server:
+Test calling MCP server:
 ```sh
 ./test-mcp.sh
+```
+
+Simulate Ollama server:
+```sh
+python ollama-server-simulator.py
+```
+
+Test a prompt that needs tool calling:
+```sh
+python ollama-tool-call.py
 ```
 
 ## Reference
