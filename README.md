@@ -1,4 +1,5 @@
 ```sh
 pip install python-sdk/ --break-system-packages
-python test-mcp-server.py
+pip install --break-system-packages -r requirements.txt
+python test-mcp-server.py --transport streamable-http
 ```
