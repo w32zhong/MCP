@@ -5,10 +5,19 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("Demo")
 
 
+# tool calling may have side-effects
 @mcp.tool()
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
+
+
+# resource has no side-effects
+@mcp.resource('readme://getREADME')
+def readme() -> str:
+    """Read the contents of README file"""
+    with open('README.md', 'r') as fh:
+        return fh.read()
 
 
 if __name__ == "__main__":

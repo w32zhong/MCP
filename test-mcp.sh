@@ -28,4 +28,16 @@ curl -L http://localhost:8080/mcp \
      --header "Accept: application/json, text/event-stream" \
      --header "Content-Type: application/json" \
      --header "mcp-session-id: $session_id" \
+     -d @test-mcp-list2.json --no-buffer
+
+curl -L http://localhost:8080/mcp \
+     --header "Accept: application/json, text/event-stream" \
+     --header "Content-Type: application/json" \
+     --header "mcp-session-id: $session_id" \
      -d @test-mcp-call.json --no-buffer
+
+curl -L http://localhost:8080/mcp \
+     --header "Accept: application/json, text/event-stream" \
+     --header "Content-Type: application/json" \
+     --header "mcp-session-id: $session_id" \
+     -d @test-mcp-read.json --no-buffer
