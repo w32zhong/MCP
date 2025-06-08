@@ -19,7 +19,7 @@ Test calling MCP server:
 
 Simulate Ollama server:
 ```sh
-python ollama-server-simulator.py
+CUDA_VISIBLE_DEVICES=0,1,2 python ollama-server-simulator.py
 ```
 
 Test a prompt that needs tool calling:

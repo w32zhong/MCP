@@ -60,6 +60,6 @@ def route_api_chat():
 if __name__ == '__main__':
     app.run(
         host='0.0.0.0',
-        port=11434,
-        debug=True
+        port=11434, # ollama default port
+        debug=False, # True
     )
