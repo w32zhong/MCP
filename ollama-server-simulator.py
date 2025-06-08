@@ -46,20 +46,25 @@ def route_api_chat():
     request_json = request.get_json()
     messages = request_json.get('messages', None)
     tools = request_json.get('tools', None)
-    print(Fore.GREEN, request_json, Style.RESET_ALL)
+    print(f'{Fore.GREEN}[request_json]',
+          json.dumps(request_json, indent=4), Style.RESET_ALL)
 
-    input_txt = tokenizer.apply_chat_template(messages, tools=tools, add_generation_prompt=True, tokenize=False)
-    print(Fore.CYAN, input_txt, Style.RESET_ALL)
+    input_txt = tokenizer.apply_chat_template(messages, tools=tools,
+                                              add_generation_prompt=True, tokenize=False)
+    print(f'{Fore.CYAN}[input_txt]',
+          input_txt, Style.RESET_ALL)
 
     inputs = tokenizer(input_txt, return_tensors="pt").to(model.device)
     outputs = model.generate(**inputs, max_new_tokens=512)
     output_txt = tokenizer.batch_decode(outputs)[0][len(input_txt):]
-    print(Fore.MAGENTA, output_txt, Style.RESET_ALL)
+    print(f'{Fore.MAGENTA}[output_txt]',
+          output_txt, Style.RESET_ALL)
 
-    output_parsed_txt = try_parse_tool_calls(output_txt)
-    print(Fore.LIGHTMAGENTA_EX, output_parsed_txt, Style.RESET_ALL)
+    output_parsed = try_parse_tool_calls(output_txt)
+    print(f'{Fore.LIGHTMAGENTA_EX}[output_parsed]',
+          json.dumps(output_parsed, indent=4), Style.RESET_ALL)
 
-    return {'message': output_parsed_txt}
+    return {'message': output_parsed}
 
 
 if __name__ == '__main__':
