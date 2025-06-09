@@ -1,3 +1,5 @@
+![MCP](https://github.com/user-attachments/assets/8c768f33-ac74-4ddf-b557-09f7090e3fbf)
+
 ## Install
 ```sh
 git submodule update --init --recursive --progress
