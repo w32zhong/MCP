@@ -3,8 +3,25 @@ from PIL import Image
 import requests
 from transformers import AutoModel, AutoModelForVision2Seq, AutoTokenizer, AutoProcessor, TextStreamer
 
-image_url = "https://c.ndtvimg.com/2025-06/vopt78mk_donald-trump-and-elon-musk_625x300_06_June_25.jpeg"
-prompt = "Describe this image."
+image_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIeBeOxN9BKWv8WIU11j6nDZsv3-nhYpRFlQ"
+prompt = "仅通过调用提供的计算工具验证图中的加法。这里你只须要调用工具。"
+
+system_prompt = """# About You
+You are a powerful and helpful agent with language, tool-calling, and vision capabilities.
+
+# Tools
+You may call one or more functions to assist with the user query.
+
+You are provided with function signatures within <tools></tools> XML tags:
+<tools>
+{"type": "function", "function": {"name": "add_two_numbers", "description": "Add two numbers", "parameters": {"type": "object", "required": ["a", "b"], "properties": {"a": {"type": "integer", "description": "The first number"}, "b": {"type": "integer", "description": "The second number"}}}}}
+</tools>
+
+For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
+<tool_call>
+{"name": <function-name>, "arguments": <args-json-object>}
+</tool_call>
+"""
 
 
 def test_Qwen(model_id="Qwen/Qwen2.5-VL-32B-Instruct"):
@@ -17,6 +34,12 @@ def test_Qwen(model_id="Qwen/Qwen2.5-VL-32B-Instruct"):
         model_id, torch_dtype="auto", device_map="auto"
     )
     messages = [
+        {
+            "role": "system",
+            "content": [
+                {"type": "text", "text": system_prompt},
+            ],
+        },
         {
             "role": "user",
             "content": [
@@ -31,6 +54,7 @@ def test_Qwen(model_id="Qwen/Qwen2.5-VL-32B-Instruct"):
     text = processor.apply_chat_template(
         messages, tokenize=False, add_generation_prompt=True
     )
+    print(text)
     image_inputs, video_inputs = process_vision_info(messages)
     inputs = processor(
         text=[text],
@@ -108,6 +132,6 @@ def test_MiMo(model_id="XiaomiMiMo/MiMo-VL-7B-SFT"):
 
 if __name__ == "__main__":
     #test_InternVL() # 38B
-    #test_Qwen() # 32B (requiring 5x16=80G VRAM)
+    test_Qwen() # 32B (requiring 5x16=80G VRAM)
     #test_Mistral() # 24B (requiring 4x16=64G VRAM)
-    test_MiMo() # 7B (requiring 2x16=32G VRAM)
+    #test_MiMo() # 7B (requiring 2x16=32G VRAM)
