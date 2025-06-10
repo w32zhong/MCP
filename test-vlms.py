@@ -107,7 +107,7 @@ def test_MiMo(model_id="XiaomiMiMo/MiMo-VL-7B-SFT"):
 
 
 if __name__ == "__main__":
-    #test_Qwen()
-    #test_Mistral()
-    #test_InternVL()
-    test_MiMo()
+    #test_InternVL() # 38B
+    #test_Qwen() # 32B (requiring 5x16=80G VRAM)
+    #test_Mistral() # 24B (requiring 4x16=64G VRAM)
+    test_MiMo() # 7B (requiring 2x16=32G VRAM)
