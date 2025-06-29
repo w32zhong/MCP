@@ -39,3 +39,9 @@ curl -L http://localhost:8989/mcp \
      --header "Content-Type: application/json" \
      --header "mcp-session-id: $session_id" \
      -d @test-mcp-read.json --no-buffer
+
+curl -L http://localhost:8989/mcp \
+     --header "Accept: application/json, text/event-stream" \
+     --header "Content-Type: application/json" \
+     --header "mcp-session-id: $session_id" \
+     -d @test-mcp-call-img.json --no-buffer
