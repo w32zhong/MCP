@@ -4,3 +4,4 @@ transformers
 accelerate
 ollama
 colorama
+opencv-python

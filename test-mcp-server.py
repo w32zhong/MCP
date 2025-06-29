@@ -1,6 +1,7 @@
 import sys
 sys.path.insert(0, 'python-sdk/src')
-from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp import FastMCP, Image
+import cv2 as cv
 
 mcp = FastMCP("Demo")
 
@@ -10,6 +11,13 @@ mcp = FastMCP("Demo")
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
+
+@mcp.tool()
+async def get_screen_snapshot():
+    """Get the current screen frame as Image."""
+
+    img = cv.imread('./test.png')
+    return Image(data=img.tobytes(), format="png")
 
 
 # resource has no side-effects
